@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balangkas — AI Thesis Title Generator</title>
+  <meta name="description" content="Generate professional thesis titles and find relevant literature using AI." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="site-header">
+    <div class="nav-inner">
+      <span class="nav-logo">Balangkas_</span>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#" data-page="home" class="active">Home</a></li>
+          <li><a href="#" data-page="about">About</a></li>
+          <li><a href="#" data-page="help">Help</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME PAGE -->
+  <main id="page-home" class="page active">
+    <div class="container">
+
+      <section class="hero">
+        <p class="hero-eyebrow">AI-Powered Research Tool</p>
+        <h1 class="hero-title">
+          Find your<br><span>thesis title.</span>
+        </h1>
+        <p class="hero-sub">Enter a research idea or keywords. Get 3 professional thesis titles with feasibility insights and relevant literature — instantly.</p>
+      </section>
+
+      <section class="input-section">
+        <label class="input-label" for="keyword-input">Research Topic / Keywords</label>
+        <div class="input-row">
+          <input
+            id="keyword-input"
+            type="text"
+            placeholder="e.g. machine learning, student performance, Philippines"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="generate-btn">Generate</button>
+        </div>
+      </section>
+
+      <div id="status-bar" role="status" aria-live="polite">
+        <div class="status-dot"></div>
+        <span id="status-text"></span>
+      </div>
+
+      <div id="error-box" class="error-box" role="alert">
+        <div class="error-label">Error</div>
+        <div id="error-msg"></div>
+      </div>
+
+      <section id="titles-section" style="display:none;">
+        <div class="section-label">Generated Titles — Click to select</div>
+        <div id="titles-grid" class="titles-grid"></div>
+      </section>
+
+      <section id="literature-section" style="display:none;">
+        <div class="section-label" style="margin-top: 2.5rem;">Related Literature</div>
+        <div id="literature-grid" class="lit-grid"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ABOUT PAGE -->
+  <main id="page-about" class="page">
+    <div class="static-page container">
+      <p class="page-eyebrow">About the Platform</p>
+      <h1>What is Balangkas?</h1>
+      <div class="content-block">
+        <p>Balangkas is a lightweight AI-powered tool designed to help students, researchers, and academics jumpstart their thesis or capstone research journey.</p>
+        <p>By entering a research idea or set of keywords, you get three professionally framed thesis titles — each with a feasibility analysis covering scope, complexity, and potential challenges. Select any title to instantly surface three relevant peer-reviewed studies from OpenAlex, one of the world's largest open academic databases.</p>
+
+        <h2>Technology Stack</h2>
+        <p>Titles are generated using Llama 3.3 70B via the Groq inference API — one of the fastest large language models available. Literature search is powered by the OpenAlex API, providing access to millions of peer-reviewed works. The app is built with Vite and vanilla JavaScript — no frameworks, no bloat.</p>
+
+        <h2>Purpose</h2>
+        <p>This tool is meant to be a starting point, not a final answer. Use it to explore directions, stress-test ideas, and discover literature early in the research process. The quality of outputs depends on the specificity of your input — the more focused your keywords, the better your results.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- HELP PAGE -->
+  <main id="page-help" class="page">
+    <div class="static-page container">
+      <p class="page-eyebrow">Usage Guide</p>
+      <h1>How to use Balangkas</h1>
+      <div class="content-block">
+
+        <h2>Quick Start</h2>
+        <ol class="step-list">
+          <li>Go to the Home page and type your research idea or keywords into the input field.</li>
+          <li>Click Generate or press Enter to start AI title generation.</li>
+          <li>Review the 3 thesis title cards — each includes a feasibility summary and complexity level.</li>
+          <li>Click any title card to load 3 relevant peer-reviewed studies from OpenAlex.</li>
+          <li>Use the study links to explore the literature and refine your research direction.</li>
+        </ol>
+
+        <h2>Tips for Better Results</h2>
+        <p>Be specific with your keywords. Instead of "technology," try "machine learning for student dropout prediction in higher education." The more context you give, the more targeted and useful the generated titles will be.</p>
+        <p>You can combine a subject area, a method, and a context — for example: "NLP, sentiment analysis, social media, mental health Philippines." This gives the AI enough constraints to generate meaningfully distinct titles.</p>
+
+        <h2>FAQs</h2>
+        <div class="faq-item">
+          <div class="faq-q">Are the generated titles final?</div>
+          <div class="faq-a">No. They are starting points for discussion with your adviser. Treat them as structured suggestions to refine, not final academic submissions.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Where does the literature come from?</div>
+          <div class="faq-a">From OpenAlex, a free and open catalog of over 250 million academic works. Results are ranked by citation count and relevance to your selected title.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why is generation slow sometimes?</div>
+          <div class="faq-a">Groq is generally very fast, but response times depend on server load and your network connection. Most generations complete in under 5 seconds.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I use this for graduate theses?</div>
+          <div class="faq-a">Yes. The AI generates titles suitable for undergraduate, graduate, and doctoral levels. Adjust your input keywords to signal the level of complexity you need.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is my data stored?</div>
+          <div class="faq-a">No. Balangkas does not store your inputs or generated content. Everything happens client-side and is cleared when you close the tab.</div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <span>Balangkas_ — AI Research Companion</span>
+      <span>Powered by Groq + OpenAlex</span>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
