@@ -13,3 +13,7 @@ Vite + Vanilla JavaScript
 Groq API (Llama 3.3 70B)
 OpenAlex API
 Deployed on Vercel
+
+## License
+
+MIT
