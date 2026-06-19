@@ -18,6 +18,7 @@ export function renderLiterature(papers) {
     card.className = 'lit-card';
     card.innerHTML = `
       <div class="lit-index">STUDY ${String(i + 1).padStart(2, '0')}</div>
+      <span class="citation-badge">${paper.category || 'PAPER'}</span>
       <div class="lit-title">${paper.title}</div>
       <div class="lit-authors">${paper.authors}</div>
       <div class="lit-year">${paper.year}</div>

@@ -1,8 +1,16 @@
 const OPENALEX_BASE = 'https://api.openalex.org/works';
+const FETCH_SIZE = 20;
+
+function categorizeYear(year) {
+  const currentYear = new Date().getFullYear();
+  if (year >= currentYear - 2) return 'SOTA';
+  if (year >= currentYear - 5) return 'Recent';
+  return 'Seminal';
+}
 
 export async function findLiterature(title) {
   const query = encodeURIComponent(title);
-  const url = `${OPENALEX_BASE}?search=${query}&filter=is_paratext:false&sort=cited_by_count:desc&per-page=3&select=title,authorships,publication_year,doi,open_access`;
+  const url = `${OPENALEX_BASE}?search=${query}&filter=is_paratext:false&sort=cited_by_count:desc&per-page=${FETCH_SIZE}&select=title,authorships,publication_year,doi,open_access`;
 
   const res = await fetch(url, {
     headers: { 'User-Agent': 'Balangkas/1.0 (mailto:user@example.com)' },
@@ -13,7 +21,7 @@ export async function findLiterature(title) {
   const data = await res.json();
   const works = data.results || [];
 
-  return works.map((w) => ({
+  const papers = works.map((w) => ({
     title: w.title || 'Untitled',
     authors: (w.authorships || [])
       .slice(0, 3)
@@ -24,4 +32,22 @@ export async function findLiterature(title) {
     doi: w.doi || null,
     oaUrl: w.open_access?.oa_url || null,
   }));
+
+  const buckets = { SOTA: [], Recent: [], Seminal: [] };
+
+  for (const p of papers) {
+    if (p.year === '—') continue;
+    const cat = categorizeYear(p.year);
+    buckets[cat].push(p);
+  }
+
+  const result = [];
+  const order = ['Seminal', 'SOTA', 'Recent'];
+  for (const cat of order) {
+    if (buckets[cat].length > 0) {
+      result.push({ ...buckets[cat][0], category: cat });
+    }
+  }
+
+  return result;
 }
